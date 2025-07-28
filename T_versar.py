@@ -3,11 +3,11 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from webdriver_manager.chrome import ChromeDriverManager
 from time import sleep
 
 
-
-
+service = Service(ChromeDriverManager().install())
 driver = webdriver.Chrome(service=service)
 
 wait = WebDriverWait(driver, 10)
@@ -59,6 +59,25 @@ descricao_input.send_keys("Este é um módulo criado automaticamente via Seleniu
 botao_estrela = wait.until(EC.element_to_be_clickable((By.XPATH,
             '(//li[@class="MuiGridListTile-root"]//button[@type="button"])[1]')))
 botao_estrela.click()
+
+# Aguarda o botao 'Salvar' final e clica (1)
+botao_salvar_final = wait.until(EC.element_to_be_clickable(
+    (By.XPATH, '//button[.//span[contains(text(), "Salvar")]]')
+))
+botao_salvar_final.click()
+
+# Aguarda o botao 'Salvar' final e clica (2)
+botao_salvar_final = wait.until(EC.element_to_be_clickable(
+    (By.XPATH, '//button[.//span[contains(text(), "Salvar")]]')
+))
+botao_salvar_final.click()
+
+# Aguarda o botao 'Salvar Modulo' final e clica
+botao_salvar_final_modulo = wait.until(EC.element_to_be_clickable(
+    (By.XPATH, '//button[.//span[contains(text(), "Salvar Módulo")]]')
+))
+botao_salvar_final_modulo.click()
+
 
 sleep(10)
 driver.quit()
