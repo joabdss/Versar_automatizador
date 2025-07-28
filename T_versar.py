@@ -17,7 +17,7 @@ driver.get("https://playful-torrone-162c28.netlify.app")
 sleep(2)
 
 #Clicar em Login
-login_button = driver.find_element(By.XPATH, '//span[tect()="Login]')
+login_button = driver.find_element(By.XPATH, '//span[text()="Login"]')
 login_button.click()
 
 # Preenche os campos de login
