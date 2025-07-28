@@ -39,25 +39,26 @@ titulo_input = wait.until(EC.presence_of_element_located((By.XPATH,
                       '//input[@placeholder="Título do Módulo"]')))
 titulo_input.send_keys("Módulo Automatizado QA")
 
-#------- INTERVALO
-# Clica no dropdown de Série
-serie_dropdown = wait.until(EC.element_to_be_clickable((By.XPATH,
-                       '//div[@id="mui-component-select-grade"]')))
-serie_dropdown.click()
+#Clica na setinha de "Série"
+dropdown_btn = wait.until(EC.element_to_be_clickable((By.ID,
+                "mui-component-select-grade_id")))
+dropdown_btn.click()
 
-# Aguarda a lista abrir e seleciona um opção (ex: 3 ano)
-# Troque "3 Ano" pelo texto exato da opçao desejada
-serie_opcao = wait.until(EC.element_to_be_clickable((By.XPATH,
-                        '//li[text()="3º Ano"]')))
-serie_opcao.click()
+# Aguarda e clica na opção "3 Ano"
+opcao_serie = wait.until(EC.element_to_be_clickable(
+    (By.XPATH, '//ul[@role="listbox"]//li[contains(translate(text(),"º°",""), "3 ANO")]')
+))
+opcao_serie.click()
 
 # Preenche a descrição
 descricao_input = wait.until(EC.presence_of_element_located((By.XPATH,                                       
                         '//textarea[@placeholder="Descrição do Módulo"]')))
 descricao_input.send_keys("Este é um módulo criado automaticamente via Selenium.")
 
-
-
+# Seleciona a capa (clicando no botao de estrela da primeira opção)
+botao_estrela = wait.until(EC.element_to_be_clickable((By.XPATH,
+            '(//li[@class="MuiGridListTile-root"]//button[@type="button"])[1]')))
+botao_estrela.click()
 
 sleep(10)
-#driver.quit()
+driver.quit()
